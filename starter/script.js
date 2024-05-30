@@ -75,24 +75,68 @@
 
 // transformer('JavaScript is the best!', oneWord);
 
-const high5 = function () {
-  console.log('Hi');
+// const high5 = function () {
+//   console.log('Hi');
+// };
+
+// document.body.addEventListener('click', high5);
+
+// ['Jonas', 'Martha', 'Dan'].forEach(high5);
+
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('Hey');
+// greeterHey('Jonas');
+// greeterHey('Steven');
+
+// const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+// greetArr('Hi')('Jonas');
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  booking: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.booking.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
 };
 
-document.body.addEventListener('click', high5);
+lufthansa.book(239, 'Jonas Wiliams');
+lufthansa.book(635, 'John Smith');
+console.log(lufthansa);
 
-['Jonas', 'Martha', 'Dan'].forEach(high5);
-
-const greet = function (greeting) {
-  return function (name) {
-    console.log(`${greeting} ${name}`);
-  };
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  booking: [],
 };
 
-const greeterHey = greet('Hey');
-greeterHey('Jonas');
-greeterHey('Steven');
+const book = lufthansa.book;
+book.call(eurowings, 23, 'Mary Hanson');
+console.log(eurowings);
 
-const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+book.call(lufthansa, 239, 'Jonas Schmidt');
+console.log(lufthansa);
 
-greetArr('Hi')('Jonas');
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  booking: [],
+};
+
+book.call(swiss, 583, 'Mark Cooper');
+
+const flightData = [354, 'David Hugland'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
+console.log(swiss);
