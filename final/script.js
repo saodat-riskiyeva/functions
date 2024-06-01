@@ -218,6 +218,35 @@ console.log(addVAT2(23));
 ///////////////////////////////////////
 // Coding Challenge #1
 
+// 1.
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Pythin', '2: Java', '3: C++'],
+  answer: new Array(4).fill(0),
+  registerNewAnswer() {
+    let string = this.question;
+    for (const answer of this.options) {
+      string += '\n' + answer;
+    }
+    let response = Number(prompt(`${string} \n(Write option number)`));
+    response;
+    if (response >= 0 && response <= 3) {
+      this.answer[response] += 1;
+    } else {
+      console.log('The answer is not valid!');
+    }
+    this.displayResults(this.answer);
+  },
+  displayResults(type) {
+    const str = typeof type === 'array' ? type : `Poll results are ${type}`;
+    console.log(str);
+  },
+};
+// 2.
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
 /* 
 Let's build a simple poll app!
 
@@ -407,4 +436,3 @@ GOOD LUCK 😀
   });
 })();
 */
-
