@@ -253,7 +253,17 @@
 //   console.log(`Will start boarding in ${wait} seconds`);
 // };
 
+// const peGroup = 1000;
 // boardPassengers(180, 3);
 // // setTimeout(function () {
 // //   console.log('TIMER');
 // // }, 1000);
+
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
